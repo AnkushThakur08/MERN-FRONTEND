@@ -9,8 +9,12 @@ body {
 }
 
 footer {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  left: 0px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin-top: 50px;
+  height: auto;
+  width: 100vw;
+  padding-top: 40px;
 }

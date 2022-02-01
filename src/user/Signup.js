@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import Base from "../core/Base";
 import { Link } from "react-router-dom";
 
+// React Toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // Method Which interate with DB
 import { signup } from "../auth/helper";
 
@@ -21,7 +25,7 @@ const SignUp = () => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false });
     signup({ name, email, password })
@@ -53,6 +57,7 @@ const SignUp = () => {
                 className="form-control"
                 onChange={handleChange("name")}
                 type="text"
+                value={name}
               />
             </div>
 
@@ -63,6 +68,7 @@ const SignUp = () => {
                 onChange={handleChange("email")}
                 type="text"
                 type="email"
+                value={email}
               />
             </div>
 
@@ -73,11 +79,16 @@ const SignUp = () => {
                 onChange={handleChange("password")}
                 type="text"
                 type="password"
+                value={password}
               />
             </div>
 
             <div class="d-grid py-3">
-              <button className="btn btn-success btn-lg" type="button">
+              <button
+                onClick={onSubmit}
+                className="btn btn-success btn-lg"
+                type="button"
+              >
                 Submit
               </button>
             </div>
@@ -87,9 +98,47 @@ const SignUp = () => {
     );
   };
 
+  /* when we add () in a Function, it means run it immediately. like in signupForm()
+   when we write onSubmit without()...it means what for an event that run...WAIT FOR SOME TIME, WHEN SOMEBODY CLICKS ON THE BUTTON THEN I HAVE METHOD..that */
+
+  const successMessage = () => {
+    return (
+      <div className="row">
+        <div className="col-md-6 offset-sm-3 text-left ">
+          <div
+            className="alert alert-success"
+            style={{ display: success ? "" : "none" }}
+          >
+            New Account was successfully created. Please{" "}
+            <Link to="/signin">Login here</Link>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const errorMessage = () => {
+    return (
+      <div className="row">
+        <div className="col-md-6 offset-sm-3 text-left ">
+          <div
+            className="alert alert-danger"
+            style={{ display: error ? "" : "none" }}
+          >
+            {error}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <Base title="Signup Here!!" description="Enter the Deatils to Signup">
+      {successMessage()}
+      {errorMessage()}
       {signupForm()}
+
+      <p className="text-white text-center">{JSON.stringify(values)}</p>
     </Base>
   );
 };
