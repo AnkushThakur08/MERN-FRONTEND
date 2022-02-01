@@ -61,7 +61,7 @@ const NavBar = ({ history }) => {
 
         <li className="nav-item">
           <Link
-            style={currentTab(history, "/SignIn")}
+            style={currentTab(history, "/signIn")}
             className="nav-link "
             to="/signIn"
           >
@@ -73,7 +73,7 @@ const NavBar = ({ history }) => {
           <Link
             style={currentTab(history, "/signout")}
             className="nav-link "
-            to="/signout"
+            to="/signout "
           >
             SignOut
           </Link>

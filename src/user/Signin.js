@@ -30,7 +30,7 @@ const SignIn = () => {
   };
 
   return (
-    <Base title="SignIn here!!" description="Enter deatils here to signIn">
+    <Base title="SignIn here!!" description="Enter the Deatils to SignIn">
       {signInForm()}
     </Base>
   );

@@ -11,7 +11,7 @@ const Base = ({
     <div>
       <NavBar />
       <div className="container-fluid">
-        <div className="jumbotron text-white text-center">
+        <div className="jumbotron text-white text-center py-4">
           <h2 className="display-5">{title}</h2>
           <p className="lead">{description}</p>
         </div>
@@ -25,9 +25,9 @@ const Base = ({
           <button className="btn btn-warning btn-lg">Contact Us</button>
         </div>
 
-        <div className="container">
+        <div className="container text-center">
           <span className="text-muted">
-            An Amazing place to <span className="text-white">Buy</span> T-shirt
+            An Amazing place to <span className="text-white">Buy T-shirt</span>
           </span>
         </div>
       </footer>
