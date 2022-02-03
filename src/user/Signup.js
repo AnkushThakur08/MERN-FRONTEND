@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import Base from "../core/Base";
 import { Link } from "react-router-dom";
 
-// React Toastify
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 // Method Which interate with DB
 import { signup } from "../auth/helper";
 
@@ -23,6 +19,7 @@ const SignUp = () => {
   const handleChange = (name) => (event) => {
     // We can create Multiple methods for email and password, but with EVENT(higher order Function) and [name] :... we CAN RESUSE THIS
     setValues({ ...values, error: false, [name]: event.target.value });
+    // Name Parameter on line number 23 will be changed, to EMAIL or password...Then that parameter will be passed to NAME Parameter in lin no 26
   };
 
   const onSubmit = (event) => {
@@ -83,7 +80,7 @@ const SignUp = () => {
               />
             </div>
 
-            <div class="d-grid py-3">
+            <div className="d-grid py-3">
               <button
                 onClick={onSubmit}
                 className="btn btn-success btn-lg"

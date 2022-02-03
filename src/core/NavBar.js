@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 
+// To Have a Color of Active NavBar Tab
 const currentTab = (history, path) => {
   if (history.location.pathname === path) {
     return { color: "#2ecc72" };
@@ -14,7 +15,7 @@ const NavBar = ({ history }) => {
     <div>
       <ul className="nav nav-tabs bg-dark">
         <li className="nav-item">
-          <Link style={currentTab(history, "/")} className="nav-link " to="/">
+          <Link style={currentTab(history, "/")} className="nav-link" to="/">
             Home
           </Link>
         </li>
