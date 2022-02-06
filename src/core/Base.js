@@ -19,10 +19,10 @@ const Base = ({
         <div className={className}>{children}</div>
       </div>
 
-      <footer className="footer fixed-bottom mt-auto">
-        <div className="container-fluid bg-success text-white text-center py-3">
-          <h4>If you have any questions, please free to reach out!</h4>
-          <button className="btn btn-warning btn-lg">Contact Us</button>
+      {/* <footer className="footer fixed-bottom mt-auto">
+        <div className="container-fluid bg-success text-white text-center py-6">
+          <h6>If you have any questions, please free to reach out!</h6>
+          <button className="btn btn-warning mb-2">Contact Us</button>
         </div>
 
         <div className="container text-center">
@@ -30,7 +30,7 @@ const Base = ({
             An Amazing place to <span className="text-white">Buy T-shirt</span>
           </span>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 };
