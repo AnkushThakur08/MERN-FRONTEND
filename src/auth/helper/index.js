@@ -16,7 +16,7 @@ export const signup = (user) => {
     .then((response) => {
       return response.json();
     })
-    .catch((err) => console.log(err));
+    .catch((error) => console.log(error));
 };
 
 export const signin = (user) => {
@@ -31,7 +31,7 @@ export const signin = (user) => {
     .then((response) => {
       return response.json();
     })
-    .catch((err) => console.log(err));
+    .catch((error) => console.log(error));
 };
 
 export const authenticate = (data, next) => {
@@ -52,7 +52,7 @@ export const signout = (next) => {
       method: "GET",
     })
       .then((response) => console.log(response))
-      .catch((err) => console.log(err));
+      .catch((error) => console.log(error));
   }
 };
 
