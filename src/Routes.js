@@ -8,6 +8,7 @@ import SignUp from "./user/Signup";
 import UserDashBoard from "./user/UserDashBoard";
 import AdminDashBoard from "./user/AdminDashBoard";
 import AddCategory from "./admin/AddCategory";
+import addProduct from "./admin/AddProduct";
 
 // Restricted Routes
 import AdminRoute from "./auth/helper/AdminRoutes";
@@ -26,6 +27,12 @@ const Routes = () => {
           path="/admin/create/category"
           exact
           component={AddCategory}
+        />
+
+        <AdminRoute
+          path="/admin/create/products"
+          exact
+          component={addProduct}
         />
       </Switch>
     </Router>
