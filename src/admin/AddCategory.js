@@ -6,8 +6,9 @@ import { createCategory } from "./helper/adminapicall";
 
 const AddCategory = () => {
   const [name, setName] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(true);
   const [success, setSuccess] = useState(false);
+  // const [message, setMessage] = useState("");
 
   const { user, token } = isAuthenticated();
 
@@ -33,8 +34,10 @@ const AddCategory = () => {
 
     // Backend Request
     createCategory(user._id, token, { name }).then((data) => {
+      // setMessage(data.error);
       if (data.error) {
-        setError(true);
+        setError(data.error);
+        setSuccess(false);
       } else {
         setError("");
         setSuccess(true);
@@ -53,11 +56,15 @@ const AddCategory = () => {
 
   const errorMessage = () => {
     if (error) {
-      return (
-        <p className="display-6 text-warning">Unable to Create The Category</p>
-      );
+      return <p className="display-6 text-danger">{error}</p>;
     }
   };
+
+  /*  const showMessage = () => {
+    if (message) {
+      return <p className="display-6 text-danger">{message}</p>;
+    }
+  }; */
 
   const myCategoryForm = () => (
     <form>
@@ -88,6 +95,7 @@ const AddCategory = () => {
     >
       <div className="row bg-white rounded">
         <div className="col-md-8 offset-md-2">
+          {/* {showMessage()} */}
           {successMessage()}
           {errorMessage()}
           {myCategoryForm()}
