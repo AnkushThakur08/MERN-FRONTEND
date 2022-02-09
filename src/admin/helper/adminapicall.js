@@ -19,7 +19,7 @@ export const createCategory = (userId, token, category) => {
     .catch((error) => console.log(error));
 };
 
-export const getAllCategories = () => {
+export const getCategories = () => {
   return fetch(`${API}/categories`, {
     method: "GET",
   })
