@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Base from "../core/Base";
+import { isAuthenticated } from "../auth/helper/index";
 
 // Api Method
 import { getCategories } from "./helper/adminapicall";
 
 const AddProduct = () => {
+  const { user, token } = isAuthenticated();
+
   const [values, setValues] = useState({
     name: "",
     description: "",
@@ -44,10 +47,9 @@ const AddProduct = () => {
       } else {
         setValues({
           ...values,
-          categories: [...data],
+          categories: data,
           formData: new FormData(),
         });
-        console.log(categories);
       }
     });
   };
@@ -78,6 +80,7 @@ const AddProduct = () => {
           />
         </label>
       </div>
+
       <div className="form-group py-2">
         <input
           onChange={handleChange("name")}
@@ -87,6 +90,7 @@ const AddProduct = () => {
           value={name}
         />
       </div>
+
       <div className="form-group py-2">
         <textarea
           onChange={handleChange("description")}
@@ -96,6 +100,7 @@ const AddProduct = () => {
           value={description}
         />
       </div>
+
       <div className="form-group py-2">
         <input
           onChange={handleChange("price")}
@@ -105,6 +110,7 @@ const AddProduct = () => {
           value={price}
         />
       </div>
+
       <div className="form-group py-2">
         <select
           onChange={handleChange("category")}
@@ -112,10 +118,16 @@ const AddProduct = () => {
           placeholder="Category"
         >
           <option>Select</option>
-          <option value="a">a</option>
-          <option value="b">b</option>
+
+          {categories &&
+            categories.map((cate, index) => (
+              <option key={index} value={cate._id}>
+                {cate.name}
+              </option>
+            ))}
         </select>
       </div>
+
       <div className="form-group py-2">
         <input
           onChange={handleChange("quantity")}
