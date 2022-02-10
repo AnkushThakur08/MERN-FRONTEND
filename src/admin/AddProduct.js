@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper/index";
 
 // Api Method
-import { getCategories } from "./helper/adminapicall";
+import { createProduct, getCategories } from "./helper/adminapicall";
 
 const AddProduct = () => {
   const { user, token } = isAuthenticated();
 
+  //Creation of state
   const [values, setValues] = useState({
     name: "",
     description: "",
@@ -24,6 +25,7 @@ const AddProduct = () => {
     formData: "",
   });
 
+  // Destructure
   const {
     name,
     description,
@@ -58,13 +60,54 @@ const AddProduct = () => {
     preload();
   }, []);
 
-  const onSubmit = () => {
-    //
+  const onSubmit = (event) => {
+    event.preventDefault();
+    setValues({ ...values, error: "", loading: true });
+    createProduct(user._id, token, formData).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          name: "",
+          description: "",
+          price: "",
+          stock: "",
+          photo: "",
+          loading: false,
+          createdProduct: data,
+        });
+      }
+    });
   };
 
   const handleChange = (name) => (event) => {
-    //
+    const value = name === "photo" ? event.target.files[0] : event.target.value;
+    formData.set(name, value);
+    setValues({ ...values, [name]: value });
   };
+
+  const successMessage = () => {
+    if (createdProduct) {
+      return (
+        <p className="display-6 text-success">Product Added Successfully</p>
+      );
+    }
+  };
+
+  const errorMessage = () => {
+    if (error) {
+      return <p className="display-6 text-danger">{error}</p>;
+    }
+  };
+
+  /*   const redirectWithDelay = () => {
+    if (createdProduct) {
+      setTimeout(() => {
+        <Redirect to="/admin/dashboard" />;
+      }, 2000);
+    }
+  }; */
 
   const createProductForm = () => (
     <form>
@@ -130,7 +173,7 @@ const AddProduct = () => {
 
       <div className="form-group py-2">
         <input
-          onChange={handleChange("quantity")}
+          onChange={handleChange("stock")}
           type="number"
           className="form-control"
           placeholder="Quantity"
@@ -159,7 +202,12 @@ const AddProduct = () => {
       </Link>
 
       <div className="row bg-dark text-white rounded">
-        <div className="col-md-8 offset-md-2">{createProductForm()}</div>
+        <div className="col-md-8 offset-md-2">
+          {errorMessage()}
+          {successMessage()}
+          {createProductForm()}
+          {/* {redirectWithDelay()} */}
+        </div>
       </div>
     </Base>
   );
