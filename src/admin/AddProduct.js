@@ -109,7 +109,7 @@ const AddProduct = () => {
     }
   }; */
 
-  const createProductForm = () => (
+  const createProductForm = () => ( 
     <form>
       <span>Post photo</span>
       <div className="form-group py-2">
