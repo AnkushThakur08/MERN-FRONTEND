@@ -12,6 +12,7 @@ import addProduct from "./admin/AddProduct";
 import ManageCategories from "./admin/ManageCategories";
 import ManageProducts from "./admin/ManageProducts";
 import UpdateProduct from "./admin/UpdateProduct";
+import UpdateCategories from "./admin/UpdateCategories";
 
 // Restricted Routes
 import AdminRoute from "./auth/helper/AdminRoutes";
@@ -54,6 +55,12 @@ const Routes = () => {
           path="/admin/product/update/:productId"
           exact
           component={UpdateProduct}
+        />
+
+        <AdminRoute
+          path="/admin/categories/update/:categoryId"
+          exact
+          component={UpdateCategories}
         />
       </Switch>
     </Router>
