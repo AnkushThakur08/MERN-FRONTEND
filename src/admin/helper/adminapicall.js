@@ -1,7 +1,6 @@
 import { API } from "../../backend";
 
-//TODO:  Category Calls
-
+// FIXME:  Category Calls
 // CreateCategory
 export const createCategory = (userId, token, category) => {
   return fetch(`${API}/category/create/${userId}`, {
@@ -30,6 +29,34 @@ export const getCategories = () => {
     .catch((error) => console.log(error));
 };
 
+// getIndividualCategory
+export const getIndividualCategory = (categoryId) => {
+  return fetch(`${API}/category/${categoryId}`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
+
+//Update Category
+export const updateCategories = (categoryId, userId, token, category) => {
+  return fetch(`${API}/category/${categoryId}/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(category),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
+
 // DeleteCategory
 export const deleteCategory = (categoryId, userId, token) => {
   return fetch(`${API}/category/${categoryId}/${userId}`, {
@@ -46,7 +73,7 @@ export const deleteCategory = (categoryId, userId, token) => {
     .catch((error) => console.log(error));
 };
 
-//TODO: Product Calls
+// FIXME: Product Calls
 // Create Product
 export const createProduct = (userId, token, product) => {
   return fetch(`${API}/product/create/${userId}`, {
