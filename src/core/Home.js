@@ -1,22 +1,22 @@
 import React from "react";
 import { API } from "../backend";
 import Base from "./Base";
+import Card from "./Card";
 import NavBar from "./NavBar";
 
 const Home = () => {
   return (
     <Base title="Home Page" description="I love Ankita">
-      <h1 className="display-4 bg-transparent">Hello Front End</h1>
-      <div className="row">
+      <div className="row text-center">
         <div className="col-4">
-          <button className="btn btn-success">Test</button>
+          <Card />
         </div>
         <div className="col-4">
-          <button className="btn btn-success">Test</button>
+          <Card />
         </div>
         <div className="col-4">
-          <button className="btn btn-success">Test</button>
-        </div>  
+          <Card />
+        </div>
       </div>
     </Base>
   );
