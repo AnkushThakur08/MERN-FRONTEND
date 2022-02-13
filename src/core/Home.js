@@ -25,9 +25,9 @@ const Home = () => {
   }, []);
 
   return (
-    <Base title="Home Page" description="I love Ankita">
+    <Base title="Home Page" description="Welcome to Tees Store">
       <div className="row text-center">
-        <p className="display-5 text-white">All T-Shirts</p>
+        <p className="display-5 text-white">All your Favorate Tees</p>
         {products.map((product, index) => (
           <div key={index} className="col-4 mb-4">
             {" "}
