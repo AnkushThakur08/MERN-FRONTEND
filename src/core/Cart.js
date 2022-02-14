@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Base from "./Base";
 import Card from "./Card";
+import StripeCheckout from "./StripeCheckout";
 
 import { loadCart } from "./helper/CartHelper";
 
@@ -50,7 +51,9 @@ const Cart = () => {
     >
       <div className="row">
         <div className="col-6 text-center">{loadAllProducts()}</div>
-        <div className="col-6">{checkout()}</div>
+        <div className="col-6">
+          <StripeCheckout products={products} reload={reload} />
+        </div>
       </div>
     </Base>
   );
