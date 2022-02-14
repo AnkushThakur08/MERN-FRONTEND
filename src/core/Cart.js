@@ -6,10 +6,13 @@ import { loadCart } from "./helper/CartHelper";
 
 const Cart = () => {
   const [products, setProducts] = useState([]);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     setProducts(loadCart());
-  }, []);
+  }, [reload]);
+
+  console.log(products);
 
   const loadAllProducts = () => {
     return (
@@ -22,7 +25,8 @@ const Cart = () => {
               product={product}
               addtoCart={false}
               removefromCart={true}
-              style={{ paddingBottom: "10px" }}
+              setReload={setReload}
+              reload={reload}
             />
             <br />
           </>
@@ -38,6 +42,7 @@ const Cart = () => {
       </div>
     );
   };
+
   return (
     <Base
       title="Cart Section"
