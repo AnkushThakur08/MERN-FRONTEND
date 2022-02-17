@@ -15,7 +15,7 @@ const Cart = () => {
 
   console.log(products);
 
-  const loadAllProducts = () => {
+  const loadAllProducts = (products) => {
     return (
       <div>
         <h1 className="display-5">Your SuperAwesome Tees</h1>
@@ -50,7 +50,13 @@ const Cart = () => {
       description="What you are waiting for! PURCHASE IT"
     >
       <div className="row">
-        <div className="col-6 text-center">{loadAllProducts()}</div>
+        <div className="col-6 text-center">
+          {products.length > 0 ? (
+            loadAllProducts(products)
+          ) : (
+            <p className="display-5">No Products in Cart</p>
+          )}
+        </div>
         <div className="col-6">
           <StripeCheckout products={products} reload={reload} />
         </div>
