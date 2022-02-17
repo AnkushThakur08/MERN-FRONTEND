@@ -17,6 +17,7 @@ const PaypalCheckout = ({
     success: false,
     clientToken: null,
     error: "",
+    instance: {},
   });
 
   const userId = isAuthenticated() && isAuthenticated().user._id;
@@ -38,9 +39,30 @@ const PaypalCheckout = ({
     getToken(userId, token);
   }, []);
 
+  const showDriopIn = () => {
+    return (
+      <div>
+        {info.clientToken !== null && products.length > 0 ? (
+          <div>
+            <DropIn
+              options={{ authorization: info.clientToken }}
+              onInstance={(instance) => (info.instance = instance)}
+            />
+            <button className="btn btn-success btn-lg w-100" onClick={() => {}}>
+              Pay with PayPal
+            </button>
+          </div>
+        ) : (
+          <p className="display-5">Please Login or add Something to Cart</p>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div>
       <button className="btn btn-success">Payment With Paypal</button>
+      {showDriopIn()}
     </div>
   );
 };
