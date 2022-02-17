@@ -26,7 +26,8 @@ export const processPayment = (userId, token, paymentInfo) => {
     body: JSON.stringify(paymentInfo),
   })
     .then((response) => {
-      console.log(response);
+      console.log("HELPER.JS", response);
+      return response.json();
     })
     .catch((error) => console.log(error));
 };
